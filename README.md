@@ -1,3 +1,18 @@
+
+npm install redux react-redux redux-thunk --save
+3つのパッケージをインストール済み。
+actions,reducers,componentsのディレクトリの作成。
+index.jsをactions,reduecesに作成。
+
+
+
+
+
+
+
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
