@@ -9,7 +9,12 @@ class TxetInput extends Component {
   // const { getBooksInfo } = this.props
 
   handleSubmit = e => {
-    const text = e.target.value.trim();
+    const text = {
+      title: e.target.value.trim(),
+      author: "",
+      isbn: "",
+      count: 40
+    };
     if (e.which === 13) {
       console.log(text);
       // this.props.dispatch(getBooksInfo(text));

@@ -25,10 +25,13 @@ export const getBooksFailure = error => ({
 
 export const getBooksInfo = keyword => {
   const rootUrl = "https://www.googleapis.com/books/v1/volumes";
-
+  console.log("title", keyword.title, keyword.isbn);
+  const title = keyword.title ? `intitle:${keyword.title} +` : ``;
+  const author = keyword.author ? `intitle:${keyword.author} +` : ``;
   const params = {
-    q: `intitle:${keyword}`,
-    maxResults: 40
+    // q: `intitle:${keyword.title} + inauthor:${keyword.author}`,
+    q: `${title}${author}isbn:${keyword.isbn}`,
+    maxResults: keyword.count
     // q: `intitle:${keyword} + inauthor:エリック・カール`
   };
   console.log("getBooksInfo/action.js");

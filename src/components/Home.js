@@ -6,7 +6,12 @@ import BookList from "./BookList";
 
 //
 const Home = ({ dispatch }) => {
-  const keyword = "はらぺこあおむし";
+  const keyword = {
+    title: "はらぺこあおむし",
+    author: "",
+    isbn: "",
+    count: 40
+  };
 
   return (
     <div>

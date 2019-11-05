@@ -9,7 +9,9 @@ import Container from "@material-ui/core/Container";
 import Button from "@material-ui/core/Button";
 import SearchIcon from "@material-ui/icons/Search";
 
-const Form = () => {
+import { withFormik } from "formik";
+
+const Form = ({ values, handleSubmit }) => {
   return (
     <React.Fragment>
       <Container
@@ -20,6 +22,7 @@ const Form = () => {
       >
         <Paper elevation={4}>
           <Grid container justify="center" alignItems="center" spacing={3}>
+            {/* <form> */}
             <Grid item container xs={9} justify="center">
               <Grid item xs={10}>
                 <FormControl fullWidth variant="outlined" margin="normal">
@@ -32,6 +35,9 @@ const Form = () => {
                     style={{
                       marginTop: "12px"
                     }}
+                    type="text"
+                    name="title"
+                    value={values.title}
                   />
                 </FormControl>
               </Grid>
@@ -42,10 +48,11 @@ const Form = () => {
                   </InputLabel>
                   <OutlinedInput
                     id="component2"
-                    placeholder="Placeholder"
+                    // placeholder="Placeholder"
                     style={{
                       marginTop: "12px"
                     }}
+                    value={values.author}
                   />
                 </FormControl>
               </Grid>
@@ -56,10 +63,12 @@ const Form = () => {
                 type="submit"
                 size="large"
                 startIcon={<SearchIcon />}
+                onSubmit={handleSubmit}
               >
                 検索
               </Button>
             </Grid>
+            {/* </form> */}
           </Grid>
         </Paper>
       </Container>
@@ -67,4 +76,16 @@ const Form = () => {
   );
 };
 
-export default Form;
+const FormikForm = withFormik({
+  mapPropsToValues({ title, author }) {
+    return {
+      title: title || "",
+      author: author || "夏目漱石"
+    };
+  },
+  handleSubmit(values) {
+    console.log("values", values);
+  }
+})(Form);
+
+export default FormikForm;

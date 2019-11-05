@@ -14,6 +14,7 @@ import IconButton from "@material-ui/core/IconButton";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import ShareIcon from "@material-ui/icons/Share";
 import Grid from "@material-ui/core/Grid";
+import Link from "@material-ui/core/Link";
 
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -44,7 +45,8 @@ const BookItem = ({ volumeInfo }) => {
     },
     main: {
       height: 268,
-      marginBottom: 5
+      marginBottom: 5,
+      overflow: "hidden"
     }
   });
   const classes = useStyles();
@@ -58,7 +60,13 @@ const BookItem = ({ volumeInfo }) => {
         {img}
       </ul> */}
       <Grid item container sm justify="center">
-        <Card className={classes.card} raised={true}>
+        <Card
+          style={{
+            border: "solid #3f51b5"
+          }}
+          className={classes.card}
+          raised={true}
+        >
           {/* <Grid item> */}
           <CardActionArea className={classes.main}>
             <CardMedia className={classes.media} image={img} component="img" />
@@ -86,9 +94,17 @@ const BookItem = ({ volumeInfo }) => {
               <IconButton>
                 <ShareIcon />
               </IconButton>
-              <Button size="small" color="primary">
-                Share
-              </Button>
+              <Link
+                href="#"
+                style={{
+                  textDecoration: "none"
+                }}
+                onClick={e => e.preventDefault()}
+              >
+                <Button size="small" color="primary">
+                  Share
+                </Button>
+              </Link>
             </CardActions>
           </Grid>
         </Card>
