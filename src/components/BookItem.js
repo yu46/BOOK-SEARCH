@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 
 import noimage from "../images/noimage.png";
 
@@ -18,9 +18,16 @@ import Link from "@material-ui/core/Link";
 
 import { makeStyles } from "@material-ui/core/styles";
 
+const { useState } = React;
+
 const BookItem = ({ volumeInfo }) => {
+  const [like, setLike] = useState(false);
+
+  const callback = () => setLike(!like);
+
   console.log("searchInfo");
   console.log(volumeInfo.imageLinks);
+  console.log("link", volumeInfo.infoLink);
   if (volumeInfo.imageLinks) {
     console.log(volumeInfo.imageLinks.thumbnail);
   }
@@ -88,23 +95,29 @@ const BookItem = ({ volumeInfo }) => {
           <Divider variant="middle" />
           <Grid container justify="space-around" alignItems="center">
             <CardActions>
-              <IconButton>
-                <FavoriteIcon />
+              <IconButton onClick={callback}>
+                <FavoriteIcon
+                  style={{
+                    color: like ? "#dc3545" : ""
+                  }}
+                />
               </IconButton>
               <IconButton>
                 <ShareIcon />
               </IconButton>
-              <Link
-                href="#"
-                style={{
-                  textDecoration: "none"
-                }}
-                onClick={e => e.preventDefault()}
-              >
-                <Button size="small" color="primary">
-                  Share
-                </Button>
-              </Link>
+              <Typography>
+                <Link
+                  href={volumeInfo.infoLink}
+                  style={{
+                    textDecoration: "none"
+                  }}
+                  // onClick={e => e.preventDefault()}
+                >
+                  <Button size="small" color="primary">
+                    Link
+                  </Button>
+                </Link>
+              </Typography>
             </CardActions>
           </Grid>
         </Card>

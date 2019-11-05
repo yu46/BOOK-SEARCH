@@ -30,7 +30,12 @@ const BookList = ({ books }) => {
   } else {
     return (
       <Container maxWidth="sm">
-        <Paper elevation={4}>
+        <Paper
+          style={{
+            border: "solid #3f51b5"
+          }}
+          elevation={4}
+        >
           <Typography align="center" variant="h5" component="h1">
             一致する検索結果はありません。
           </Typography>

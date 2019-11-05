@@ -1,6 +1,5 @@
 import React from "react";
 
-import FormControl from "@material-ui/core/FormControl";
 import InputLabel from "@material-ui/core/InputLabel";
 import OutlinedInput from "@material-ui/core/OutlinedInput";
 import Paper from "@material-ui/core/Paper";
@@ -42,7 +41,13 @@ const SelectInput = ({ name, ...others }) => {
   );
 };
 
-const FormikForm = ({ values, errors, touched, isSubmitting }) => {
+const FormikForm = ({
+  values,
+  errors,
+  touched,
+  isSubmitting,
+  ErrorMessage
+}) => {
   return (
     <React.Fragment>
       <Container
@@ -81,7 +86,9 @@ const FormikForm = ({ values, errors, touched, isSubmitting }) => {
                     value={values.title}
                     fullWidth
                   />
-                  {touched.title && errors.title && <div>{errors.title}</div>}
+                  {touched.title && errors.title && (
+                    <div style={{ color: "#dc3545" }}>{errors.title}</div>
+                  )}
                 </Grid>
                 <Grid
                   style={{
@@ -98,15 +105,16 @@ const FormikForm = ({ values, errors, touched, isSubmitting }) => {
                     type="text"
                     name="author"
                     fullWidth
-                    // placeholder="Placeholder"
-
-                    value={values.author}
+                    // invalid={touched.author && !!errors.author}
+                    // value={values.author}
                   />
-                  {touched.author && errors.auhor && <div>{errors.auhor}</div>}
+                  {touched.author && errors.author && (
+                    <div style={{ color: "#dc3545" }}>{errors.author}</div>
+                  )}
                 </Grid>
                 <Grid item xs={10}>
                   <InputLabel shrink htmlFor="input-isbn">
-                    ISBN
+                    ISBN (半角数字)
                   </InputLabel>
                   <Input
                     id="input-isbn"
@@ -119,7 +127,9 @@ const FormikForm = ({ values, errors, touched, isSubmitting }) => {
                     }}
                     value={values.isbn}
                   />
-                  {touched.isbn && errors.isbn && <div>{errors.isbn}</div>}
+                  {touched.isbn && errors.isbn && (
+                    <div style={{ color: "#dc3545" }}>{errors.isbn}</div>
+                  )}
                 </Grid>
               </Grid>
 
@@ -133,18 +143,15 @@ const FormikForm = ({ values, errors, touched, isSubmitting }) => {
                     name="count"
                     id="select-number"
                     value={values.count}
-                    style={
-                      {
-                        // marginTop: 10
-                      }
-                    }
+                    style={{
+                      marginTop: 5
+                    }}
                   >
                     <MenuItem value={10}>10</MenuItem>
                     <MenuItem value={20}>20</MenuItem>
                     <MenuItem value={30}>30</MenuItem>
                     <MenuItem value={40}>40</MenuItem>
                   </SelectInput>
-                  {/* </FormControl> */}
                 </Grid>
                 <Grid item>
                   <Button
@@ -152,7 +159,7 @@ const FormikForm = ({ values, errors, touched, isSubmitting }) => {
                     type="submit"
                     size="large"
                     startIcon={<SearchIcon />}
-                    // disabled={isSubmitting}
+                    disabled={isSubmitting}
                   >
                     検索
                   </Button>
@@ -188,7 +195,6 @@ export default withFormik({
     author: yup.string().max(10, "著者は10字以内で！"),
     isbn: yup
       .string()
-      .max(13, "ISBNは10字か13字で！")
-      .min(10, "ISBNは10字か13字で！")
+      .matches(/^\d{10}$|^\d{13}$/, "ISBNは10字か13字の半角数字で！")
   })
 })(FormikForm);
