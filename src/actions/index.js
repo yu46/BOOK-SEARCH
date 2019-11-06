@@ -29,7 +29,6 @@ export const getBooksInfo = keyword => {
   const title = keyword.title ? `intitle:${keyword.title} +` : ``;
   const author = keyword.author ? `intitle:${keyword.author} +` : ``;
   const params = {
-    // q: `intitle:${keyword.title} + inauthor:${keyword.author}`,
     q: `${title}${author}isbn:${keyword.isbn}`,
     maxResults: keyword.count
     // q: `intitle:${keyword} + inauthor:エリック・カール`

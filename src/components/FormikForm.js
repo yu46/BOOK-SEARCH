@@ -18,8 +18,6 @@ const Input = ({ name, ...others }) => {
     <Field
       name={name}
       render={({ field }) => {
-        // console.log("field", { ...field });
-        // console.log("others", { ...others });
         return <OutlinedInput {...field} {...others} />;
       }}
     />
@@ -33,8 +31,6 @@ const SelectInput = ({ name, ...others }) => {
       }}
       name={name}
       render={({ field }) => {
-        // console.log("field", { ...field });
-        // console.log("others", { ...others });
         return <Select {...field} {...others} />;
       }}
     />
@@ -46,18 +42,12 @@ const FormikForm = ({
   errors,
   touched,
   isSubmitting,
-  ErrorMessage
+  handleReset,
+  dirty
 }) => {
   return (
     <React.Fragment>
-      <Container
-        maxWidth="sm"
-        style={
-          {
-            // marginTop: "50px"
-          }
-        }
-      >
+      <Container maxWidth="sm">
         <Paper
           style={{
             border: "solid #3f51b5",
@@ -87,7 +77,7 @@ const FormikForm = ({
                     fullWidth
                   />
                   {touched.title && errors.title && (
-                    <div style={{ color: "#dc3545" }}>{errors.title}</div>
+                    <div style={{ color: "#ee4056" }}>{errors.title}</div>
                   )}
                 </Grid>
                 <Grid
@@ -105,11 +95,9 @@ const FormikForm = ({
                     type="text"
                     name="author"
                     fullWidth
-                    // invalid={touched.author && !!errors.author}
-                    // value={values.author}
                   />
                   {touched.author && errors.author && (
-                    <div style={{ color: "#dc3545" }}>{errors.author}</div>
+                    <div style={{ color: "#ee4056" }}>{errors.author}</div>
                   )}
                 </Grid>
                 <Grid item xs={10}>
@@ -121,14 +109,13 @@ const FormikForm = ({
                     type="text"
                     name="isbn"
                     fullWidth
-                    // placeholder="Placeholder"
                     style={{
                       marginBottom: 20
                     }}
                     value={values.isbn}
                   />
                   {touched.isbn && errors.isbn && (
-                    <div style={{ color: "#dc3545" }}>{errors.isbn}</div>
+                    <div style={{ color: "#ee4056" }}>{errors.isbn}</div>
                   )}
                 </Grid>
               </Grid>
@@ -160,8 +147,24 @@ const FormikForm = ({
                     size="large"
                     startIcon={<SearchIcon />}
                     disabled={isSubmitting}
+                    style={{
+                      width: 110
+                    }}
                   >
                     検索
+                  </Button>
+                </Grid>
+                <Grid item>
+                  <Button
+                    variant="contained"
+                    onClick={handleReset}
+                    size="large"
+                    disabled={!dirty || isSubmitting}
+                    style={{
+                      width: 110
+                    }}
+                  >
+                    リセット
                   </Button>
                 </Grid>
               </Grid>
@@ -188,7 +191,6 @@ export default withFormik({
     console.log("props", props);
     props.onForm(values);
     setSubmitting(false);
-    resetForm();
   },
   validationSchema: yup.object().shape({
     title: yup.string().max(20, "タイトルは20字以内で！"),

@@ -22,7 +22,6 @@ const Form = ({ values, handleSubmit }) => {
       >
         <Paper elevation={4}>
           <Grid container justify="center" alignItems="center" spacing={3}>
-            {/* <form> */}
             <Grid item container xs={9} justify="center">
               <Grid item xs={10}>
                 <FormControl fullWidth variant="outlined" margin="normal">
@@ -48,7 +47,6 @@ const Form = ({ values, handleSubmit }) => {
                   </InputLabel>
                   <OutlinedInput
                     id="component2"
-                    // placeholder="Placeholder"
                     style={{
                       marginTop: "12px"
                     }}

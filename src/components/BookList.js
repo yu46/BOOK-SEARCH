@@ -11,7 +11,6 @@ const BookList = ({ books }) => {
   console.log("mapの前");
   console.log(books.items);
 
-  // console.log(books.items.volumeInfo.imageLinks.thumnail)
   if (books.items) {
     return (
       <Container>

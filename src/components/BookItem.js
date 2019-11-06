@@ -15,13 +15,20 @@ import FavoriteIcon from "@material-ui/icons/Favorite";
 import ShareIcon from "@material-ui/icons/Share";
 import Grid from "@material-ui/core/Grid";
 import Link from "@material-ui/core/Link";
-
 import { makeStyles } from "@material-ui/core/styles";
+
+import BookModal from "./Modal";
 
 const { useState } = React;
 
 const BookItem = ({ volumeInfo }) => {
   const [like, setLike] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [on, setOn] = useState(false);
+
+  const handleClose = () => setOpen(false);
+  const handleOpen = () => setOpen(true);
+  const handleClick = () => setOn(!on);
 
   const callback = () => setLike(!like);
 
@@ -34,7 +41,6 @@ const BookItem = ({ volumeInfo }) => {
   let img;
   if (volumeInfo.imageLinks) {
     img = volumeInfo.imageLinks.thumbnail;
-    // img = <img src={volumeInfo.imageLinks.thumbnail} alt="" />;
   } else {
     img = noimage;
   }
@@ -42,10 +48,10 @@ const BookItem = ({ volumeInfo }) => {
   const useStyles = makeStyles({
     card: {
       width: 345,
-      height: 330
+      height: 330,
+      border: "solid #3f51b5"
     },
     media: {
-      // maxWidth: 345,
       height: 160,
       marginTop: 5,
       objectFit: "contain"
@@ -60,22 +66,9 @@ const BookItem = ({ volumeInfo }) => {
 
   return (
     <React.Fragment>
-      {/* <ul>
-        <li>タイトル: {volumeInfo.title}</li>
-        <li>著者: {volumeInfo.authors}</li>
-        <li>説明: {volumeInfo.description}</li>
-        {img}
-      </ul> */}
       <Grid item container sm justify="center">
-        <Card
-          style={{
-            border: "solid #3f51b5"
-          }}
-          className={classes.card}
-          raised={true}
-        >
-          {/* <Grid item> */}
-          <CardActionArea className={classes.main}>
+        <Card className={classes.card} raised={true}>
+          <CardActionArea onClick={handleOpen} className={classes.main}>
             <CardMedia className={classes.media} image={img} component="img" />
             <CardContent>
               <Typography gutterBottom variant="h6" component="h2">
@@ -91,19 +84,28 @@ const BookItem = ({ volumeInfo }) => {
               </Typography>
             </CardContent>
           </CardActionArea>
-          {/* </Grid> */}
+          <BookModal
+            {...volumeInfo}
+            open={open}
+            handleClose={handleClose}
+            img={img}
+          />
           <Divider variant="middle" />
           <Grid container justify="space-around" alignItems="center">
             <CardActions>
               <IconButton onClick={callback}>
                 <FavoriteIcon
                   style={{
-                    color: like ? "#dc3545" : ""
+                    color: like ? "#ee4056" : ""
                   }}
                 />
               </IconButton>
-              <IconButton>
-                <ShareIcon />
+              <IconButton onClick={handleClick}>
+                <ShareIcon
+                  style={{
+                    visibility: on ? "hidden" : ""
+                  }}
+                />
               </IconButton>
               <Typography>
                 <Link
