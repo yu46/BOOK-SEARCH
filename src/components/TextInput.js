@@ -25,7 +25,3 @@ class TxetInput extends Component {
 }
 
 export default connect()(TxetInput);
-// export default connect(
-//   null,
-//   { getBooksInfo }
-// )(TxetInput);

@@ -13,16 +13,6 @@ import Select from "@material-ui/core/Select";
 import { withFormik, Form, Field } from "formik";
 import * as yup from "yup";
 
-// const Input = ({ name, ...others }) => {
-//   return (
-//     <Field
-//       name={name}
-//       render={({ field }) => {
-//         return <OutlinedInput {...field} {...others} />;
-//       }}
-//     />
-//   );
-// };
 const Input = ({ name, ...others }) => {
   return (
     <Field name={name}>
@@ -30,19 +20,7 @@ const Input = ({ name, ...others }) => {
     </Field>
   );
 };
-// const SelectInput = ({ name, ...others }) => {
-//   return (
-//     <Field
-//       style={{
-//         marginBottom: 12
-//       }}
-//       name={name}
-//       render={({ field }) => {
-//         return <Select {...field} {...others} />;
-//       }}
-//     />
-//   );
-// };
+
 const SelectInput = ({ name, ...others }) => {
   return (
     <Field

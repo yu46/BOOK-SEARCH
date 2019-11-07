@@ -113,7 +113,6 @@ const BookItem = ({ volumeInfo }) => {
                   style={{
                     textDecoration: "none"
                   }}
-                  // onClick={e => e.preventDefault()}
                 >
                   <Button size="small" color="primary">
                     Link

@@ -14,12 +14,7 @@ const BookList = ({ books }) => {
   if (books.items) {
     return (
       <Container>
-        <Grid
-          container
-          justify="center"
-          spacing={4}
-          // sm={11}
-        >
+        <Grid container justify="center" spacing={4}>
           {books.items.map((item, index) => {
             return <BookItem key={index} {...item} />;
           })}

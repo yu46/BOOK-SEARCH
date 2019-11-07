@@ -21,8 +21,6 @@ export const getBooksFailure = error => ({
   error
 });
 
-// https://www.googleapis.com/books/v1/volumes?q=intitle:harry
-
 export const getBooksInfo = keyword => {
   const rootUrl = "https://www.googleapis.com/books/v1/volumes";
   console.log("title", keyword.title, keyword.isbn);
@@ -31,12 +29,10 @@ export const getBooksInfo = keyword => {
   const params = {
     q: `${title}${author}isbn:${keyword.isbn}`,
     maxResults: keyword.count
-    // q: `intitle:${keyword} + inauthor:エリック・カール`
   };
   console.log("getBooksInfo/action.js");
   return dispatch => {
     dispatch(getBooksRequest());
-    // return axios.get(`${rootUrl}?q=intitle:${keyword}`)
     return axios
       .get(rootUrl, { params })
       .then(response => {
