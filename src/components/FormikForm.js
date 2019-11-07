@@ -48,7 +48,8 @@ const FormikForm = ({
         <Paper
           style={{
             border: "solid #3f51b5",
-            padding: 20
+            padding: 20,
+            marginBottom: 50
           }}
           elevation={4}
         >
@@ -177,9 +178,6 @@ export default withFormik({
     };
   },
   handleSubmit(values, { props, resetForm, setSubmitting }) {
-    console.log(values);
-    console.log(values.title);
-    console.log("props", props);
     props.onForm(values);
     setSubmitting(false);
   },

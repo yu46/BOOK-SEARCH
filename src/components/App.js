@@ -1,11 +1,10 @@
 import React from "react";
-import Home from "./Home";
-import TextInput from "./TextInput";
-import Title from "./Title";
+import { connect } from "react-redux";
 import FormikForm from "./FormikForm";
 
+import Title from "./Title";
+import BookList from "./BookList";
 import { getBooksInfo } from "../actions";
-import { connect } from "react-redux";
 
 const App = ({ getBooksInfo }) => {
   return (
@@ -17,8 +16,7 @@ const App = ({ getBooksInfo }) => {
           getBooksInfo(values);
         }}
       />
-      <TextInput />
-      <Home />
+      <BookList />
     </React.Fragment>
   );
 };
