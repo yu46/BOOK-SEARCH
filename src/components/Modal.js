@@ -22,7 +22,6 @@ const useStyle = makeStyles(theme => ({
   media: {
     height: 265,
     marginTop: 5,
-    // margin: "5px auto",
     objectFit: "contain"
   },
   content: {

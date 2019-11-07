@@ -87,25 +87,18 @@ const FormikForm = ({
                   </InputLabel>
                   <Input
                     id="input-title"
-                    style={{
-                      marginBottom: 20
-                    }}
                     type="text"
                     name="title"
                     value={values.title}
                     fullWidth
                   />
-                  {touched.title && errors.title && (
-                    <div style={{ color: "#ee4056" }}>{errors.title}</div>
-                  )}
+                  <div style={{ height: 8 }}>
+                    {touched.title && errors.title && (
+                      <div style={{ color: "#ee4056" }}>{errors.title}</div>
+                    )}
+                  </div>
                 </Grid>
-                <Grid
-                  style={{
-                    marginBottom: 20
-                  }}
-                  item
-                  xs={10}
-                >
+                <Grid item xs={10}>
                   <InputLabel shrink htmlFor="input-author">
                     著者
                   </InputLabel>
@@ -115,9 +108,11 @@ const FormikForm = ({
                     name="author"
                     fullWidth
                   />
-                  {touched.author && errors.author && (
-                    <div style={{ color: "#ee4056" }}>{errors.author}</div>
-                  )}
+                  <div style={{ height: 8 }}>
+                    {touched.author && errors.author && (
+                      <div style={{ color: "#ee4056" }}>{errors.author}</div>
+                    )}
+                  </div>
                 </Grid>
                 <Grid item xs={10}>
                   <InputLabel shrink htmlFor="input-isbn">
@@ -128,14 +123,13 @@ const FormikForm = ({
                     type="text"
                     name="isbn"
                     fullWidth
-                    style={{
-                      marginBottom: 20
-                    }}
                     value={values.isbn}
                   />
-                  {touched.isbn && errors.isbn && (
-                    <div style={{ color: "#ee4056" }}>{errors.isbn}</div>
-                  )}
+                  <div style={{ height: 8 }}>
+                    {touched.isbn && errors.isbn && (
+                      <div style={{ color: "#ee4056" }}>{errors.isbn}</div>
+                    )}
+                  </div>
                 </Grid>
               </Grid>
 

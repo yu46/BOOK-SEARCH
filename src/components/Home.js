@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 
 import BookList from "./BookList";
 
-//
 const Home = ({ dispatch }) => {
   const keyword = {
     title: "はらぺこあおむし",

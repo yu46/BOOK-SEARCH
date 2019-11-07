@@ -6,7 +6,6 @@ class TxetInput extends Component {
   state = {
     text: this.props.text || ""
   };
-  // const { getBooksInfo } = this.props
 
   handleSubmit = e => {
     const text = {
@@ -17,11 +16,8 @@ class TxetInput extends Component {
     };
     if (e.which === 13) {
       console.log(text);
-      // this.props.dispatch(getBooksInfo(text));
       this.props.dispatch(getBooksInfo(text));
     }
-
-    // this.setState({ text: e.target.value });
   };
   render() {
     return <input type="text" onKeyDown={this.handleSubmit} />;
