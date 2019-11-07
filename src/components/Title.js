@@ -6,9 +6,9 @@ const Title = () => (
     color="primary"
     variant="h2"
     style={{
-      marginTop: 15,
-      marginBottom: 15,
-      textAlign: "center"
+      margin: "25px auto",
+      textAlign: "center",
+      fontWeight: "bold"
     }}
   >
     Book Search

@@ -38,32 +38,24 @@ const BookModal = ({ open, handleClose, img, ...volumeInfo }) => {
   const classes = useStyle();
   console.log("isbn", volumeInfo.industryIdentifiers);
 
-  let isbn1;
-  let isbn2;
-  if (volumeInfo.industryIdentifiers) {
-    switch (volumeInfo.industryIdentifiers[0].type) {
-      case "ISBN_13":
-        isbn1 = "ISBN13: ";
-        break;
-      case "ISBN_10":
-        isbn1 = "ISBN10: ";
-        break;
-      default:
-        isbn1 = "";
-        break;
-    }
-    if (volumeInfo.industryIdentifiers[1])
-      switch (volumeInfo.industryIdentifiers[1].type) {
-        case "ISBN_13":
-          isbn2 = "ISBN13: ";
-          break;
-        case "ISBN_10":
-          isbn2 = "ISBN10: ";
-          break;
-        default:
-          isbn2 = "";
-          break;
-      }
+  //isbnの数字を取り出す処理。可読性が悪いので直したい。
+  let isbn10 = "";
+  let isbn13 = "";
+  console.log("定義のみ", isbn10);
+  if (
+    volumeInfo.industryIdentifiers &&
+    volumeInfo.industryIdentifiers[0].identifier
+  ) {
+    isbn10 = volumeInfo.industryIdentifiers.find(info => {
+      return info.type === "ISBN_10";
+    });
+
+    isbn13 = volumeInfo.industryIdentifiers.find(info => {
+      return info.type === "ISBN_13";
+    });
+
+    isbn10 = isbn10 && isbn10.identifier;
+    isbn13 = isbn13 && isbn13.identifier;
   }
 
   return (
@@ -76,7 +68,7 @@ const BookModal = ({ open, handleClose, img, ...volumeInfo }) => {
             <Typography gutterBottom variant="h6" component="h2">
               {volumeInfo.title}
             </Typography>
-            <Divider className={classes.divider} middle />
+            <Divider className={classes.divider} variant="middle" />
             <Typography variant="body1" color="textSecondary" component="p">
               {volumeInfo.description || <h2>no description</h2>}
             </Typography>
@@ -104,17 +96,11 @@ const BookModal = ({ open, handleClose, img, ...volumeInfo }) => {
               </Grid>
               <Grid item xs container direction="column">
                 <Typography variant="body2" color="textSecondary" component="p">
-                  {isbn1}
-                  {volumeInfo.industryIdentifiers &&
-                    volumeInfo.industryIdentifiers[0] &&
-                    volumeInfo.industryIdentifiers[0].identifier}
+                  ISBN10:{` ${isbn10}`}
                 </Typography>
 
                 <Typography variant="body2" color="textSecondary" component="p">
-                  {isbn2}
-                  {volumeInfo.industryIdentifiers &&
-                    volumeInfo.industryIdentifiers[1] &&
-                    volumeInfo.industryIdentifiers[1].identifier}
+                  ISBN13:{` ${isbn13}`}
                 </Typography>
               </Grid>
             </Grid>

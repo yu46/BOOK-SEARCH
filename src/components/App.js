@@ -9,7 +9,7 @@ import { connect } from "react-redux";
 
 const App = ({ getBooksInfo }) => {
   return (
-    <div>
+    <React.Fragment>
       <Title />
       <FormikForm
         onForm={values => {
@@ -19,7 +19,7 @@ const App = ({ getBooksInfo }) => {
       />
       <TextInput />
       <Home />
-    </div>
+    </React.Fragment>
   );
 };
 

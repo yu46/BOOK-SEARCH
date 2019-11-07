@@ -13,27 +13,46 @@ import Select from "@material-ui/core/Select";
 import { withFormik, Form, Field } from "formik";
 import * as yup from "yup";
 
+// const Input = ({ name, ...others }) => {
+//   return (
+//     <Field
+//       name={name}
+//       render={({ field }) => {
+//         return <OutlinedInput {...field} {...others} />;
+//       }}
+//     />
+//   );
+// };
 const Input = ({ name, ...others }) => {
   return (
-    <Field
-      name={name}
-      render={({ field }) => {
-        return <OutlinedInput {...field} {...others} />;
-      }}
-    />
+    <Field name={name}>
+      {({ field }) => <OutlinedInput {...field} {...others} />}
+    </Field>
   );
 };
+// const SelectInput = ({ name, ...others }) => {
+//   return (
+//     <Field
+//       style={{
+//         marginBottom: 12
+//       }}
+//       name={name}
+//       render={({ field }) => {
+//         return <Select {...field} {...others} />;
+//       }}
+//     />
+//   );
+// };
 const SelectInput = ({ name, ...others }) => {
   return (
     <Field
+      name={name}
       style={{
         marginBottom: 12
       }}
-      name={name}
-      render={({ field }) => {
-        return <Select {...field} {...others} />;
-      }}
-    />
+    >
+      {({ field }) => <Select {...field} {...others} />}
+    </Field>
   );
 };
 
@@ -51,7 +70,7 @@ const FormikForm = ({
         <Paper
           style={{
             border: "solid #3f51b5",
-            padding: 15
+            padding: 20
           }}
           elevation={4}
         >
@@ -124,7 +143,6 @@ const FormikForm = ({
                 <Grid item container direction="column" alignItems="center">
                   <InputLabel>表示件数</InputLabel>
                   <SelectInput
-                    displayEmpty="true"
                     variant="outlined"
                     type=""
                     name="count"
@@ -142,6 +160,7 @@ const FormikForm = ({
                 </Grid>
                 <Grid item>
                   <Button
+                    color="primary"
                     variant="contained"
                     type="submit"
                     size="large"
