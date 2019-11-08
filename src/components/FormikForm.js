@@ -42,6 +42,7 @@ const FormikForm = ({
   handleReset,
   dirty
 }) => {
+  console.log("nakami", dirty, isSubmitting);
   return (
     <React.Fragment>
       <Container maxWidth="sm">
@@ -138,7 +139,7 @@ const FormikForm = ({
                     type="submit"
                     size="large"
                     startIcon={<SearchIcon />}
-                    disabled={isSubmitting}
+                    disabled={!dirty || isSubmitting}
                     style={{
                       width: 110
                     }}

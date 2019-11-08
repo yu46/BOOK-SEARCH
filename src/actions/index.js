@@ -25,7 +25,8 @@ export const getBooksInfo = keyword => {
   const rootUrl = "https://www.googleapis.com/books/v1/volumes";
   console.log("title", keyword.title, keyword.isbn);
   const title = keyword.title ? `intitle:${keyword.title} +` : ``;
-  const author = keyword.author ? `intitle:${keyword.author} +` : ``;
+  const author = keyword.author ? `inauthor:${keyword.author} +` : ``;
+  const isbn = keyword.isbn ? `isbn:${keyword.isbn} +` : ``;
   const params = {
     q: `${title}${author}isbn:${keyword.isbn}`,
     maxResults: keyword.count
