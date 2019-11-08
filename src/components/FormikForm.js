@@ -42,7 +42,6 @@ const FormikForm = ({
   handleReset,
   dirty
 }) => {
-  console.log("nakami", dirty, isSubmitting);
   return (
     <React.Fragment>
       <Container maxWidth="sm">

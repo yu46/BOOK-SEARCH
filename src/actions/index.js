@@ -28,7 +28,7 @@ export const getBooksInfo = keyword => {
   const author = keyword.author ? `inauthor:${keyword.author} +` : ``;
   const isbn = keyword.isbn ? `isbn:${keyword.isbn} +` : ``;
   const params = {
-    q: `${title}${author}isbn:${keyword.isbn}`,
+    q: `${title}${author}${isbn}`,
     maxResults: keyword.count
   };
   console.log("getBooksInfo/action.js");
