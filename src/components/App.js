@@ -15,6 +15,7 @@ const App = ({ getBooksInfo }) => {
         style={{
           backgroundColor: "#fafafa"
         }}
+        component="div"
       >
         <Title />
         <FormikForm

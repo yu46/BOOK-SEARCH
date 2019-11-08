@@ -37,7 +37,7 @@ const BookModal = ({ open, handleClose, img, ...volumeInfo }) => {
   const classes = useStyle();
   console.log("isbn", volumeInfo.industryIdentifiers);
 
-  //isbnの数字を取り出す処理。可読性が悪いので直したい。
+  //isbnの番号を取り出す処理。可読性が悪いので直したい。
   let isbn10 = "";
   let isbn13 = "";
   console.log("定義のみ", isbn10);
@@ -53,8 +53,8 @@ const BookModal = ({ open, handleClose, img, ...volumeInfo }) => {
       return info.type === "ISBN_13";
     });
 
-    isbn10 = isbn10 && isbn10.identifier;
-    isbn13 = isbn13 && isbn13.identifier;
+    isbn10 = !(isbn10 === undefined) ? isbn10.identifier : "";
+    isbn13 = !(isbn13 === undefined) ? isbn13.identifier : "";
   }
 
   return (
