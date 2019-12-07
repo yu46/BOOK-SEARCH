@@ -41,16 +41,36 @@ const BookModal = ({ open, handleClose, img, ...volumeInfo }) => {
   let isbn10 = "";
   let isbn13 = "";
   console.log("定義のみ", isbn10);
+
+  const isbnArray = volumeInfo.industryIdentifiers;
+  if (isbnArray) {
+    const indexOfIsbn13 = isbnArray.find(obj => obj.type === "ISBN_13");
+    const indexOfIsbn10 = isbnArray.find(obj => obj.type === 'ISBN_10');
+    if (indexOfIsbn13) {
+      console.log(indexOfIsbn13);
+    }
+    if (indexOfIsbn10) {
+      console.log(indexOfIsbn10.identifier)
+    }
+
+  }
+
   if (
-    volumeInfo.industryIdentifiers &&
-    volumeInfo.industryIdentifiers[0].identifier
+    isbnArray
+    // 
+    // &&isbnArray[0].identifieの削除
+    // 1.volumeInfo.industryIdentifiers[0].identifier identifierなしで実行出来る？ 
+    // 
+    // isbnArray[0]が存在すればidentifierは存在するという仮定
+    // undefindである場合、falsyな値のためif文は実行されない
+    // 2.そもそもisbnArray[0]の真偽値の確認はいらない？ isbnArrayが存在すればisbnArray[0]も存在する？
   ) {
-    isbn10 = volumeInfo.industryIdentifiers.find(info => {
-      return info.type === "ISBN_10";
+    isbn10 = isbnArray.find(obj => {
+      return obj.type === "ISBN_10";
     });
 
-    isbn13 = volumeInfo.industryIdentifiers.find(info => {
-      return info.type === "ISBN_13";
+    isbn13 = isbnArray.find(obj => {
+      return obj.type === "ISBN_13";
     });
 
     isbn10 = !(isbn10 === undefined) ? isbn10.identifier : "";
