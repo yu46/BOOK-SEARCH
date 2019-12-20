@@ -177,7 +177,7 @@ export default withFormik({
       count: count || "20"
     };
   },
-  handleSubmit(values, { props, resetForm, setSubmitting }) {
+  handleSubmit(values, { props, setSubmitting }) {
     props.onForm(values);
     setSubmitting(false);
   },

@@ -29,8 +29,7 @@ const BookItem = ({ volumeInfo }) => {
   const handleClose = () => setOpen(false);
   const handleOpen = () => setOpen(true);
   const handleClick = () => setOn(!on);
-
-  const callback = () => setLike(!like);
+  const handleClickLike = () => setLike(!like);
 
   let img;
   if (volumeInfo.imageLinks) {
@@ -87,7 +86,7 @@ const BookItem = ({ volumeInfo }) => {
           <Divider variant="middle" />
           <Grid container justify="space-around" alignItems="center">
             <CardActions>
-              <IconButton onClick={callback}>
+              <IconButton onClick={handleClickLike}>
                 <FavoriteIcon
                   style={{
                     color: like ? "#ee4056" : ""
