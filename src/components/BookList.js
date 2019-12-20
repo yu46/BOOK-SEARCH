@@ -8,9 +8,6 @@ import Typography from "@material-ui/core/Typography";
 import BookItem from "./BookItem";
 
 const BookList = ({ books }) => {
-  console.log("mapの前");
-  console.log(books.items);
-
   if (books.items) {
     return (
       <Container>

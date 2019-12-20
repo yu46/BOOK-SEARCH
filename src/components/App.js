@@ -20,7 +20,6 @@ const App = ({ getBooksInfo }) => {
         <Title />
         <FormikForm
           onForm={values => {
-            console.log("App,js", values);
             getBooksInfo(values);
           }}
         />
@@ -30,7 +29,4 @@ const App = ({ getBooksInfo }) => {
   );
 };
 
-export default connect(
-  null,
-  { getBooksInfo }
-)(App);
+export default connect(null, { getBooksInfo })(App);

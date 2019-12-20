@@ -12,8 +12,8 @@ import { makeStyles } from "@material-ui/core/styles";
 const useStyle = makeStyles(theme => ({
   card: {
     border: "solid #3f51b5",
-    width: 480,
-    height: 600,
+    width: "100%",
+    maxWidth: 480,
     position: "absolute",
     top: "50%",
     left: "50%",
@@ -35,40 +35,14 @@ const useStyle = makeStyles(theme => ({
 
 const BookModal = ({ open, handleClose, img, ...volumeInfo }) => {
   const classes = useStyle();
-  console.log("isbn", volumeInfo.industryIdentifiers);
-
   //isbnの番号を取り出す処理。可読性が悪いので直したい。
   let isbn10 = "";
   let isbn13 = "";
-  console.log("定義のみ", isbn10);
-
   const isbnArray = volumeInfo.industryIdentifiers;
   if (isbnArray) {
-    const indexOfIsbn13 = isbnArray.find(obj => obj.type === "ISBN_13");
-    const indexOfIsbn10 = isbnArray.find(obj => obj.type === 'ISBN_10');
-    if (indexOfIsbn13) {
-      console.log(indexOfIsbn13);
-    }
-    if (indexOfIsbn10) {
-      console.log(indexOfIsbn10.identifier)
-    }
-
-  }
-
-  if (
-    isbnArray
-    // 
-    // &&isbnArray[0].identifieの削除
-    // 1.volumeInfo.industryIdentifiers[0].identifier identifierなしで実行出来る？ 
-    // 
-    // isbnArray[0]が存在すればidentifierは存在するという仮定
-    // undefindである場合、falsyな値のためif文は実行されない
-    // 2.そもそもisbnArray[0]の真偽値の確認はいらない？ isbnArrayが存在すればisbnArray[0]も存在する？
-  ) {
     isbn10 = isbnArray.find(obj => {
       return obj.type === "ISBN_10";
     });
-
     isbn13 = isbnArray.find(obj => {
       return obj.type === "ISBN_13";
     });

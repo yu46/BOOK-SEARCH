@@ -19,7 +19,6 @@ import { makeStyles } from "@material-ui/core/styles";
 
 import BookModal from "./Modal";
 
-
 const { useState } = React;
 
 const BookItem = ({ volumeInfo }) => {
@@ -33,12 +32,6 @@ const BookItem = ({ volumeInfo }) => {
 
   const callback = () => setLike(!like);
 
-  console.log("searchInfo");
-  console.log(volumeInfo.imageLinks);
-  console.log("link", volumeInfo.infoLink);
-  if (volumeInfo.imageLinks) {
-    console.log(volumeInfo.imageLinks.thumbnail);
-  }
   let img;
   if (volumeInfo.imageLinks) {
     img = volumeInfo.imageLinks.thumbnail;
@@ -72,11 +65,7 @@ const BookItem = ({ volumeInfo }) => {
           <CardActionArea onClick={handleOpen} className={classes.main}>
             <CardMedia className={classes.media} image={img} component="img" />
             <CardContent>
-              <Typography
-                gutterBottom
-                variant="h6"
-                component="h2"
-              >
+              <Typography gutterBottom variant="h6" component="h2">
                 {volumeInfo.title}
               </Typography>
               <Typography
