@@ -23,7 +23,6 @@ export const getBooksFailure = error => ({
 
 export const getBooksInfo = keyword => {
   const rootUrl = "https://www.googleapis.com/books/v1/volumes";
-  console.log("title", keyword.title, keyword.isbn);
   const title = keyword.title ? `intitle:${keyword.title} +` : ``;
   const author = keyword.author ? `inauthor:${keyword.author} +` : ``;
   const isbn = keyword.isbn ? `isbn:${keyword.isbn} +` : ``;
@@ -31,19 +30,14 @@ export const getBooksInfo = keyword => {
     q: `${title}${author}${isbn}`,
     maxResults: keyword.count
   };
-  console.log("getBooksInfo/action.js");
   return dispatch => {
     dispatch(getBooksRequest());
     return axios
       .get(rootUrl, { params })
       .then(response => {
-        console.log("actions.js");
-        console.log(response.data);
-        console.log(response.data.items);
         dispatch(getBooksSuccess(response.data.items));
       })
       .catch(error => {
-        console.log("err");
         dispatch(getBooksFailure(error));
       });
   };
